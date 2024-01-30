@@ -2,8 +2,12 @@ import React from 'react';
 import cartIcon from './shopping-cart-solid.svg';
 import './app-header.scss';
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getTotalCartSum } from "../../slices/cartSlice";
 
-const AppHeader = ({total}) => {
+const AppHeader = () => {
+	const total = useSelector(getTotalCartSum);
+
     return (
         <header className="header">
             

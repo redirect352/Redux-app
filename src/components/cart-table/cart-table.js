@@ -1,17 +1,27 @@
 import React from 'react';
 import './cart-table.scss';
+import CartItem from "../cart-item";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteItemFromCart, getCartItems } from "../../slices/cartSlice";
+import { getMenuItem } from "../../slices/menuSlice";
 
 const CartTable = () => {
+	const dispatch = useDispatch();
+	const cartItems = useSelector(getCartItems);
+	const deleteItem = (id) => dispatch(deleteItemFromCart(id));
+	const emptyMessage = cartItems.length ? null : (<h1 style={{color:"white", textAlign:'center', marginTop:"3vh", fontWeight:'normal'}}>Вы ничего не заказали. Пожалуйста выберите что-нибудь в меню</h1>)
     return (
         <>
             <div className="cart__title">Ваш заказ:</div>
+			{emptyMessage}
             <div className="cart__list">
-                <div className="cart__item">
-                    <img src="https://static.1000.menu/img/content/21458/-salat-cezar-s-kr-salat-cezar-s-krevetkami-s-maionezom_1501173720_1_max.jpg" className="cart__item-img" alt="Cesar salad"></img>
-                    <div className="cart__item-title">Cesar salad</div>
-                    <div className="cart__item-price">12$</div>
-                    <div className="cart__close">&times;</div>
-                </div>
+				{cartItems.map(({id, count}) => (
+					<CartItem 	key={id}
+								onDeleteClicked = {()=> deleteItem(id)}
+								menuItemSelector  = {(state) => getMenuItem(state, id)}
+								count = {count}/>
+				))}
+               
             </div>
         </>
     );

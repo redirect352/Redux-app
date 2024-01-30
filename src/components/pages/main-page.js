@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo } from 'react';
+import React, { useCallback, useContext } from 'react';
 import MenuList from '../menu-list';
 import RestoServiceContext from "../resto-service-context/resto-service-context";
 import useLoader from "../../hooks/useLoader";

@@ -16,6 +16,8 @@ export const menuSlice = createSlice({
   },
 })
 
-// Action creators are generated for each case reducer function
+
+export const getMenuItem = (state, id) => state.menu.items.find(item => item.id === id);
+export const getMenuItems = state => state.menu.items;
 export const { menuLoaded } = menuSlice.actions
 export default menuSlice.reducer
