@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  menu : []
+  items : []
 }
 
 export const menuSlice = createSlice({
@@ -9,12 +9,13 @@ export const menuSlice = createSlice({
   initialState,
   reducers: {
 	menuLoaded : (state, action) => {
-		state.menu = action.payload;
+		//console.log(state);
+		state.items = action.payload;
+		//console.log(state);
 	},
   },
 })
 
 // Action creators are generated for each case reducer function
 export const { menuLoaded } = menuSlice.actions
-
 export default menuSlice.reducer
